@@ -28,16 +28,14 @@ img {
 }
 
 p {
-    color: #abb2bf;
-    /* color: black; */
+    color: black;
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
 a {
-    color: #6c757d;
-    /* color: #606060; */
+    color: #606060;
     font-size: 12px;
     font-size: 15px;
     text-decoration-line: none;
