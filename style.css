@@ -8,7 +8,6 @@ body {
 
 body, #search {
     background-color: #212529;
-    /* background-color: white; */
 }
 
 #search {
@@ -30,7 +29,6 @@ img {
 
 p {
     color: #abb2bf;
-    /* color: black; */
     font-size: 18px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -38,7 +36,6 @@ p {
 
 a {
     color: #6c757d;
-    /* color: #606060; */
     font-size: 12px;
     font-size: 15px;
     text-decoration-line: none;
