@@ -1,16 +1,16 @@
 const apiKey = data.key;
-const searchInput = document.getElementById('searchInput');
 const results = 24;
-const videos = document.getElementById("videos");
+const searchInput = document.querySelector("#searchInput");
+const videos = document.querySelector("#videos");
 
-searchInput.addEventListener('keyup', e => {
-    if (e.key === 'Enter') {
+searchInput.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
         while (videos.firstChild) {
             videos.removeChild(videos.firstChild);
         }
 
         searchInput.blur();
-        e.preventDefault();
+        event.preventDefault();
 
         const searchQuery = searchInput.value;
         const get = 'https://youtube.googleapis.com/youtube/v3/search?part=snippet&order=relevance&';
@@ -22,7 +22,7 @@ searchInput.addEventListener('keyup', e => {
             const data = await response.json();
 
             for (let i = 0; i < 25; i++) {
-                const link = document.createElement('a');
+                const link = document.createElement("a");
                 link.target = "_blank";
                 const kind = data.items[i].id.kind;
                 if (kind === "youtube#video") {
@@ -38,10 +38,10 @@ searchInput.addEventListener('keyup', e => {
                     link.href = `https://www.youtube.com/playlist?list=${playlist}`;
                 }
 
-                const img = document.createElement('img');
+                const img = document.createElement("img");
                 img.src = data.items[i].snippet.thumbnails.high.url;
 
-                const title = document.createElement('p');
+                const title = document.createElement("p");
                 title.innerHTML = data.items[i].snippet.title;
 
                 link.appendChild(img);
@@ -54,7 +54,7 @@ searchInput.addEventListener('keyup', e => {
                 videoDiv.appendChild(title);
 
                 if (kind !== "youtube#channel") {
-                    const channelLink = document.createElement('a');
+                    const channelLink = document.createElement("a");
                     channelLink.target = "_blank";
                     const channelId = data.items[i].snippet.channelId;
                     channelLink.href = `https://www.youtube.com/channel/${channelId}`;
