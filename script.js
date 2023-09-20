@@ -1,13 +1,13 @@
 const apiKey = data.key;
 const results = 24;
 const searchInput = document.querySelector("#searchInput");
+const iframe = document.querySelector("#iframe");
 const videos = document.querySelector("#videos");
 
 searchInput.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
-        while (videos.firstChild) {
-            videos.removeChild(videos.firstChild);
-        }
+        videos.innerHTML = "";
+        iframe.innerHTML = "<div id='player'></div>";
 
         searchInput.blur();
         event.preventDefault();
@@ -22,12 +22,14 @@ searchInput.addEventListener("keydown", function(event) {
             const data = await response.json();
 
             for (let i = 0; i < 25; i++) {
-                const link = document.createElement("a");
-                link.target = "_blank";
+                const link = document.createElement("button");
                 const kind = data.items[i].id.kind;
                 if (kind === "youtube#video") {
                     const video = data.items[i].id.videoId;
-                    link.href = `https://www.youtube.com/watch?v=${video}`;
+                    link.addEventListener("click", function() {
+                        iframe.innerHTML = "<div id='player'></div>";
+                        const player = new YT.Player("player", {videoId: video});
+                    });
                 }
                 if (kind === "youtube#channel") {
                     const channel = data.items[i].id.channelId;
@@ -46,7 +48,7 @@ searchInput.addEventListener("keydown", function(event) {
 
                 link.appendChild(img);
 
-                const videoDiv = document.createElement('div');
+                const videoDiv = document.createElement("div");
                 videoDiv.id = "videoDiv";
 
                 videoDiv.appendChild(link);
