@@ -46,7 +46,7 @@ searchInput.addEventListener("keydown", function(event) {
 
                 link.appendChild(img);
 
-                const videoDiv = document.createElement('div');
+                const videoDiv = document.createElement("div");
                 videoDiv.id = "videoDiv";
 
                 videoDiv.appendChild(link);
